@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- version 2.1 -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    body{
+      background: #ffffff;
+      color: rgb(32, 32, 32);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .title{
+      text-align: center;
+      margin: 2px;
+    }
+    .yellow {
+      color: #ffbb00;
+    }
+    .blue {
+      color: #00a2ff;
+    }
+    .blue-2 {
+      color: #005180;
+    }
+    .timeColor {
+      color: #2e7986;
+      font-weight: bold;
+      font-size: 24px;
+      margin: 0;
+    }
+  </style>
+  <div class="title">
+    <h3 class="title" >Time: </h3><h3 class="timeColor" id="time"></h3> 
+  </div>
+  <!-- Days -->
+ <h3 class="title">Planet Of Day</h3> 
+ <h2 id="day" class="title yellow"> </h2>
+ <!-- Prive Hour Planet -->
+ <div class="flex" >
+  <h3 class="title">Prive Planet </h3> 
+  <h3 id="prive" class="title blue-2"> </h3>
+   <!-- Hours -->
+  <h3 class="title">Planet Of Hour</h3> 
+  <h1 id="hour" class="title blue"> </h1>
+  <!-- Next Hour Planet -->
+  <h3 class="title">Next Planet </h3> 
+  <h3 id="next" class="title blue-2"> </h3> 
+ </div>
+
+ <table>
+  <th></th>
+ </table>
+
+  <script>
+    
+    const planetsHour = ['Mercury','Moon','Saturn', 'Jupiter', 'Mars' , 'Sun' ,'Venus' ];
+    const planetsDay = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn'];
+
+    //new Date
+    const date = new Date();
+    const day = date.getDay();
+    const hour = date.getHours();
+    const numberHours = (((day * 24) + hour) % 7 );
+
+    //hours
+    const hourDiv = document.getElementById('hour');
+    hourDiv.innerHTML = planetsHour[numberHours - 1];
+
+    //next Hour Plant
+    const next = document.getElementById('next');
+    next.innerHTML = planetsHour[numberHours];
+
+    //Prive Hour Plant
+    const prive = document.getElementById('prive');
+    if( numberHours -2 <= 0 ){
+
+      prive.innerHTML = planetsHour[planetsHour.length - 1];
+    }else{
+      prive.innerHTML = planetsHour[numberHours - 2];
+
+    }
+
+    //Days
+    const dayDiv = document.getElementById('day');
+    dayDiv.innerHTML = planetsDay[day];
+
+    //clock
+    const time = document.getElementById('time');
+    setInterval(()=>{
+      const iran = new Date().toLocaleString('fa-IR')
+      time.innerHTML = iran;
+    },1000);
+    
+
+  </script>
+</body>
+</html>
